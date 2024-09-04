@@ -1,20 +1,46 @@
-// GraphIndependentNodeFinder.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-
 #include <iostream>
+#include <unordered_map>
+#include <vector>
+#include <string>
+#include <sstream>
 
-int main()
-{
-    std::cout << "Hello World!\n";
+void add_edge(std::unordered_map<std::string, std::vector<std::string>>& graph, const std::string& from, const std::string& to) {
+    graph[from].push_back(to);
+
+    if (graph.find(to) == graph.end()) {
+        graph[to] = std::vector<std::string>();
+    }
 }
 
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
+void display_graph(const std::unordered_map<std::string, std::vector<std::string>>& graph) {
+    for (const auto& node : graph) {
+        std::cout << "Node " << node.first << " has edges to: ";
+        for (const auto& edge : node.second) {
+            std::cout << edge << " ";
+        }
+        std::cout << std::endl;
+    }
+}
 
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
+int main() {
+    std::unordered_map<std::string, std::vector<std::string>> graph;
+
+    std::cout << "Enter edges (format: from to), end with an empty line:" << std::endl;
+
+    std::string line;
+
+    while (std::getline(std::cin, line) && !line.empty()) {
+        std::istringstream iss(line);
+        std::string from, to;
+        if (iss >> from >> to) {
+            add_edge(graph, from, to);
+        }
+        else {
+            std::cerr << "Invalid input format. Use 'from to' format." << std::endl;
+        }
+    }
+
+    display_graph(graph);
+
+    return 0;
+}
