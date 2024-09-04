@@ -3,23 +3,16 @@
 #include <vector>
 #include <string>
 #include <sstream>
+#include <queue>
 
 void add_edge(std::unordered_map<std::string, std::vector<std::string>>& graph,
     std::unordered_map<std::string, int>& in_degree,
     const std::string& from, const std::string& to) {
     graph[from].push_back(to);
-
-    // Increment in-degree for the 'to' node
     in_degree[to]++;
 
-    // Ensure 'from' node is in the in-degree map (if it's not already there)
     if (in_degree.find(from) == in_degree.end()) {
         in_degree[from] = 0;
-    }
-
-    // Ensure 'to' node is in the graph (if it's not already there)
-    if (graph.find(to) == graph.end()) {
-        graph[to] = std::vector<std::string>();
     }
 }
 
@@ -33,13 +26,39 @@ void display_graph(const std::unordered_map<std::string, std::vector<std::string
     }
 }
 
-void display_nodes_without_dependencies(const std::unordered_map<std::string, int>& in_degree) {
-    std::cout << "Independent nodes:" << std::endl;
-    std::cout << "1: ";
-    for (const auto& node : in_degree) {
-        if (node.second == 0) {
-            std::cout << node.first << std::endl;
+void remove_independent_nodes(std::unordered_map<std::string, std::vector<std::string>>& graph,
+    std::unordered_map<std::string, int>& in_degree) {
+    int round = 1;
+
+    while (true) {
+        std::queue<std::string> to_remove;
+        for (const auto& node : in_degree) {
+            if (node.second == 0) {
+                to_remove.push(node.first);
+            }
         }
+
+        if (to_remove.empty()) {
+            break;  // No more independent nodes to remove
+        }
+
+        std::cout << "Independent nodes " << round << ": ";
+        while (!to_remove.empty()) {
+            std::string node = to_remove.front();
+            to_remove.pop();
+
+            std::cout << node << " ";
+
+            for (const auto& neighbor : graph[node]) {
+                in_degree[neighbor]--;
+            }
+
+            graph.erase(node);
+            in_degree.erase(node);
+        }
+
+        std::cout << std::endl;
+        round++;
     }
 }
 
@@ -62,8 +81,10 @@ int main() {
         }
     }
 
+    std::cout << "Original graph:" << std::endl;
     display_graph(graph);
-    display_nodes_without_dependencies(in_degree);
+
+    remove_independent_nodes(graph, in_degree);
 
     return 0;
 }
