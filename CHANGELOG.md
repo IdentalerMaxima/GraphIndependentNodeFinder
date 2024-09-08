@@ -1,5 +1,16 @@
 # Changelog
 
+## [2.0.0](https://github.com/IdentalerMaxima/GraphIndependentNodeFinder/compare/v1.0.0...v2.0.0) (2024-09-08)
+
+
+### ⚠ BREAKING CHANGES
+
+* Changed data structure of has nodes to vector in graph to unordered list
+
+### Features
+
+* Changed data structure of has nodes to vector in graph to unordered list ([4cf1772](https://github.com/IdentalerMaxima/GraphIndependentNodeFinder/commit/4cf1772db374c1bbe1259a8d101267d16eb63390))
+
 ## 1.0.0 (2024-09-08)
 
 
