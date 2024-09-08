@@ -6,6 +6,7 @@
     #include <queue>
     #include <unordered_set>
     #include <fstream>
+    #include <chrono>
 
     void add_edge(std::unordered_map<std::string, std::unordered_set<std::string>>& graph,
         std::unordered_map<std::string, int>& in_degree,
@@ -112,10 +113,11 @@
         int input_method;
         std::cout << "Select input method (1 = Console, 2 = File): ";
         std::cin >> input_method;
-        std::cin.ignore();  //Ignore the newline left by std::cin
+        std::cin.ignore();
 
         if (input_method == 1) {
             read_edges_from_console(graph, in_degree);
+
         }
         else if (input_method == 2) {
             std::string filename;
@@ -131,7 +133,13 @@
         //std::cout << "Original graph:" << std::endl;
         //display_graph(graph);
 
+        static auto start = std::chrono::high_resolution_clock::now();
+
         remove_independent_nodes(graph, in_degree);
+
+        auto end = std::chrono::high_resolution_clock::now();
+        std::chrono::duration<double> elapsed = end - start;
+        std::cout << "Elapsed time: " << elapsed.count() << " seconds" << std::endl;
 
         return 0;
     }
