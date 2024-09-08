@@ -5,6 +5,7 @@
     #include <sstream>
     #include <queue>
     #include <unordered_set>
+    #include <fstream>
 
     void add_edge(std::unordered_map<std::string, std::unordered_set<std::string>>& graph,
         std::unordered_map<std::string, int>& in_degree,
@@ -63,12 +64,9 @@
         }
     }
 
-    int main() {
-        std::unordered_map<std::string, std::unordered_set<std::string>> graph;
-        std::unordered_map<std::string, int> in_degree;
-
+    void read_edges_from_console(std::unordered_map<std::string, std::unordered_set<std::string>>& graph,
+        std::unordered_map<std::string, int>& in_degree) {
         std::cout << "Enter edges (format: from to), end with an empty line:" << std::endl;
-
         std::string line;
 
         while (std::getline(std::cin, line) && !line.empty()) {
@@ -81,9 +79,57 @@
                 std::cerr << "Invalid input format. Use 'from to' format." << std::endl;
             }
         }
+    }
 
-        std::cout << "Original graph:" << std::endl;
-        display_graph(graph);
+    void read_edges_from_file(const std::string& filename,
+        std::unordered_map<std::string, std::unordered_set<std::string>>& graph,
+        std::unordered_map<std::string, int>& in_degree) {
+        std::ifstream infile(filename);
+        if (!infile.is_open()) {
+            std::cerr << "Could not open file: " << filename << std::endl;
+            return;
+        }
+
+        std::string line;
+        while (std::getline(infile, line)) {
+            std::istringstream iss(line);
+            std::string from, to;
+            if (iss >> from >> to) {
+                add_edge(graph, in_degree, from, to);
+            }
+            else {
+                std::cerr << "Invalid input format in file. Use 'from to' format." << std::endl;
+            }
+        }
+
+        infile.close();
+    }
+
+    int main() {
+        std::unordered_map<std::string, std::unordered_set<std::string>> graph;
+        std::unordered_map<std::string, int> in_degree;
+
+        int input_method;
+        std::cout << "Select input method (1 = Console, 2 = File): ";
+        std::cin >> input_method;
+        std::cin.ignore();  //Ignore the newline left by std::cin
+
+        if (input_method == 1) {
+            read_edges_from_console(graph, in_degree);
+        }
+        else if (input_method == 2) {
+            std::string filename;
+            std::cout << "Enter filename: ";
+            std::cin >> filename;
+            read_edges_from_file(filename, graph, in_degree);
+        }
+        else {
+            std::cerr << "Invalid input method selected." << std::endl;
+            return 1;
+        }
+
+        //std::cout << "Original graph:" << std::endl;
+        //display_graph(graph);
 
         remove_independent_nodes(graph, in_degree);
 
