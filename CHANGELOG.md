@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.1.0](https://github.com/IdentalerMaxima/GraphIndependentNodeFinder/compare/v3.0.0...v3.1.0) (2024-09-08)
+
+
+### Features
+
+* Add chrono to time performance ([20346fd](https://github.com/IdentalerMaxima/GraphIndependentNodeFinder/commit/20346fd4766f44adf48f1944d5af07f94c5d6ad7))
+
 ## [3.0.0](https://github.com/IdentalerMaxima/GraphIndependentNodeFinder/compare/v2.0.0...v3.0.0) (2024-09-08)
 
 
