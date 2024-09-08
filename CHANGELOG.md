@@ -1,5 +1,16 @@
 # Changelog
 
+## [3.0.0](https://github.com/IdentalerMaxima/GraphIndependentNodeFinder/compare/v2.0.0...v3.0.0) (2024-09-08)
+
+
+### ⚠ BREAKING CHANGES
+
+* Added option to choose between file or console input and added logic to read from file.
+
+### Features
+
+* Added option to choose between file or console input and added logic to read from file. ([19c7487](https://github.com/IdentalerMaxima/GraphIndependentNodeFinder/commit/19c748700462ccbac69feb381d4e63b96b46d06f))
+
 ## [2.0.0](https://github.com/IdentalerMaxima/GraphIndependentNodeFinder/compare/v1.0.0...v2.0.0) (2024-09-08)
 
 
