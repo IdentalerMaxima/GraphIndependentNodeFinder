@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.1.1](https://github.com/IdentalerMaxima/GraphIndependentNodeFinder/compare/v3.1.0...v3.1.1) (2024-09-09)
+
+
+### Bug Fixes
+
+* Add error handling to prevent self loops ([3f41619](https://github.com/IdentalerMaxima/GraphIndependentNodeFinder/commit/3f41619cf078cd9c59d1f3e0e7c5c696f59861dd))
+
 ## [3.1.0](https://github.com/IdentalerMaxima/GraphIndependentNodeFinder/compare/v3.0.0...v3.1.0) (2024-09-08)
 
 
