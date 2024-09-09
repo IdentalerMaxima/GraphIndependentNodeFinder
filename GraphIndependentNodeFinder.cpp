@@ -8,11 +8,17 @@
     #include <fstream>
     #include <chrono>
 
-    void add_edge(std::unordered_map<std::string, std::unordered_set<std::string>>& graph,
-        std::unordered_map<std::string, int>& in_degree,
+    void add_edge(std::unordered_map<std::string, std::unordered_set<std::string>>& graph, std::unordered_map<std::string, int>& in_degree,
         const std::string& from, const std::string& to) {
+
+        if (from == to) 
+        {
+            std::cerr << "No loops allowed" << std::endl;
+            return;
+        }
+
         graph[from].insert(to);
-        in_degree[to]++;
+        in_degree[to]++;    
 
         if (in_degree.find(from) == in_degree.end()) {
             in_degree[from] = 0;
