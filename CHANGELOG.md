@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.4.0](https://github.com/IdentalerMaxima/GraphIndependentNodeFinder/compare/v3.3.0...v3.4.0) (2024-09-10)
+
+
+### Features
+
+* add display of line number where error happened in file reading ([4b387e1](https://github.com/IdentalerMaxima/GraphIndependentNodeFinder/commit/4b387e124e3b2471a065cf2aa5efd532501b389e))
+
 ## [3.3.0](https://github.com/IdentalerMaxima/GraphIndependentNodeFinder/compare/v3.2.0...v3.3.0) (2024-09-10)
 
 
