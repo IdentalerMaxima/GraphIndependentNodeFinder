@@ -57,7 +57,7 @@
             }
 
             if (to_remove.empty()) {
-                break;  // No more independent nodes to remove
+                break;
             }
 
             std::cout << "Independent nodes " << round << ": ";
@@ -101,6 +101,7 @@
         std::unordered_map<std::string, std::unordered_set<std::string>>& graph,
         std::unordered_map<std::string, int>& in_degree) {
         std::ifstream infile(filename);
+
         if (!infile.is_open()) {
             std::cerr << "Could not open file: " << filename << std::endl;
             return;
@@ -110,12 +111,24 @@
         while (std::getline(infile, line)) {
             std::istringstream iss(line);
             std::string from, to;
-            if (iss >> from >> to) {
-                add_edge(graph, in_degree, from, to);
-            }
-            else {
+
+            if (!(iss >> from >> to)) {
                 std::cerr << "Invalid input format in file. Use 'from to' format." << std::endl;
+                continue;
             }
+
+            if (from == to) {
+                std::cerr << "No loops allowed" << std::endl;
+                continue;
+            }
+
+            if (graph[from].find(to) != graph[from].end()) {
+                std::cerr << "No duplicate entries allowed" << std::endl;
+                continue;
+            }
+
+            add_edge(graph, in_degree, from, to);
+
         }
 
         infile.close();
@@ -144,9 +157,6 @@
             std::cerr << "Invalid input method selected." << std::endl;
             return 1;
         }
-
-        //std::cout << "Original graph:" << std::endl;
-        //display_graph(graph);
 
         static auto start = std::chrono::high_resolution_clock::now();
 
