@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.2.0](https://github.com/IdentalerMaxima/GraphIndependentNodeFinder/compare/v3.1.1...v3.2.0) (2024-09-10)
+
+
+### Features
+
+* add check to avoid duplicate entries ([dff0184](https://github.com/IdentalerMaxima/GraphIndependentNodeFinder/commit/dff01846b476d4d20bdfa33fa953bd6ba6f892e9))
+
 ## [3.1.1](https://github.com/IdentalerMaxima/GraphIndependentNodeFinder/compare/v3.1.0...v3.1.1) (2024-09-09)
 
 
