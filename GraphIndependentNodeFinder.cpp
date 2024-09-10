@@ -108,22 +108,25 @@
         }
 
         std::string line;
+        int line_no = 0;
+
         while (std::getline(infile, line)) {
+            line_no++;
             std::istringstream iss(line);
             std::string from, to;
 
             if (!(iss >> from >> to)) {
-                std::cerr << "Invalid input format in file. Use 'from to' format." << std::endl;
+                std::cerr << "Invalid input format in line " << line_no << " .Use 'from to' format, line will be skipped!" << std::endl;
                 continue;
             }
 
             if (from == to) {
-                std::cerr << "No loops allowed" << std::endl;
+                std::cerr << "Loop found in line no: " << line_no << " No loops allowed, line will be skipped!" << std::endl;
                 continue;
             }
 
             if (graph[from].find(to) != graph[from].end()) {
-                std::cerr << "No duplicate entries allowed" << std::endl;
+                std::cerr << "Dupplicate in line no: " << line_no << " No duplicate entries allowed, line will be skipped!" << std::endl;
                 continue;
             }
 
