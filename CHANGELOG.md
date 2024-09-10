@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.3.0](https://github.com/IdentalerMaxima/GraphIndependentNodeFinder/compare/v3.2.0...v3.3.0) (2024-09-10)
+
+
+### Features
+
+* add error checks for file reading (correct format, no loops, duplicate entries) ([dfaf3cc](https://github.com/IdentalerMaxima/GraphIndependentNodeFinder/commit/dfaf3ccd6f319710ca73997ded3cb32a4c3ca198))
+
 ## [3.2.0](https://github.com/IdentalerMaxima/GraphIndependentNodeFinder/compare/v3.1.1...v3.2.0) (2024-09-10)
 
 
