@@ -17,8 +17,17 @@
             return;
         }
 
-        graph[from].insert(to);
-        in_degree[to]++;    
+        if (graph[from].find(to) == graph[from].end()) //If the search for to in graph[X] returns .end(), the to is new so add it.
+        {
+            graph[from].insert(to);
+            in_degree[to]++;
+        }
+        else
+        {
+            std::cerr << "No duplicate entries allowed" << std::endl;
+        }
+
+           
 
         if (in_degree.find(from) == in_degree.end()) {
             in_degree[from] = 0;
