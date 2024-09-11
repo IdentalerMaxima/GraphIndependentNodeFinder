@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.5.0](https://github.com/IdentalerMaxima/GraphIndependentNodeFinder/compare/v3.4.0...v3.5.0) (2024-09-11)
+
+
+### Features
+
+* add check for infinite loops and finish test files ([88eed5c](https://github.com/IdentalerMaxima/GraphIndependentNodeFinder/commit/88eed5ccd837e206605f7f753d12e121ad18c1fa))
+
 ## [3.4.0](https://github.com/IdentalerMaxima/GraphIndependentNodeFinder/compare/v3.3.0...v3.4.0) (2024-09-10)
 
 
