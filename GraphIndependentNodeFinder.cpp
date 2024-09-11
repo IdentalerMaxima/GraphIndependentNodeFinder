@@ -27,6 +27,10 @@
             std::cerr << "No duplicate entries allowed" << std::endl;
         }
 
+        if (graph[to].find(from) != graph[to].end()) {
+            std::cerr << "Adding this edge would make an infinite loop!" << std::endl;
+        }
+
            
 
         if (in_degree.find(from) == in_degree.end()) {
@@ -127,6 +131,11 @@
 
             if (graph[from].find(to) != graph[from].end()) {
                 std::cerr << "Dupplicate in line no: " << line_no << " No duplicate entries allowed, line will be skipped!" << std::endl;
+                continue;
+            }
+
+            if (graph[to].find(from) != graph[to].end()) {
+                std::cerr << "Infinite loop detected in line no: " << line_no << " Adding this edge would make an infinite loop, skipping line!" << std::endl;
                 continue;
             }
 
